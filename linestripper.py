@@ -5,14 +5,14 @@
 
 filename = raw_input('Enter a file name to strip: ')
 try:
-    f = open(filename, "r")
-    lines = f.readlines()
-    f.close()
-    f = open(filename, "w")
+    with open(filename, 'rb') as f:
+        lines = f.readlines()
+        f.close()
     print("Stripping...")
-    for line in lines:
-        if line != '\n':
-            f.write(line)
+    with open(filename, 'wb') as f:
+        for i in lines: 
+            if len(i.strip()) > 0:
+                f.write(i)
     f.close()
     print("File stripped of extra lines.")
     print("have a good day!")
